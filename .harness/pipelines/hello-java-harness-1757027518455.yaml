@@ -14,11 +14,13 @@ pipeline:
             steps:
               - step:
                   type: Run
-                  name: Echo Welcome Message
-                  identifier: Echo_Welcome_Message
+                  name: Maven Build
+                  identifier: Maven_Build
                   spec:
+                    connectorRef: account.harnessImage
+                    image: maven:3-eclipse-temurin-21
                     shell: Sh
-                    command: echo "Welcome to Harness CI"
+                    command: mvn -B -DskipTests package
           platform:
             os: Linux
             arch: Amd64
